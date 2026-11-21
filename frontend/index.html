@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Smart Shopper – Knowledge-Based Recommender</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <h1>Smart Shopper</h1>
+      <p class="tag">Product recommendations for brand-new customers: no purchase history needed.</p>
+    </div>
+  </header>
+
+  <main class="wrap layout">
+    <section class="panel" aria-labelledby="need-title">
+      <h2 id="need-title">Tell us what you need</h2>
+
+      <div class="field">
+        <label class="lbl">1. What are you shopping for?</label>
+        <div id="categories" class="chips" role="radiogroup"></div>
+      </div>
+
+      <div id="steps" hidden>
+        <div class="field">
+          <label class="lbl" for="budget">2. Your maximum budget: <strong id="budgetValue"></strong></label>
+          <input id="budget" type="range">
+          <div class="range-hint"><span id="minPrice"></span><span id="maxPrice"></span></div>
+        </div>
+
+        <div class="field">
+          <label class="lbl">3. What will you use it for? <span class="opt">(pick any)</span></label>
+          <div id="useCases" class="chips"></div>
+          <p id="useCaseHint" class="hint"></p>
+        </div>
+
+        <div class="field">
+          <label class="lbl">4. Brands to avoid <span class="opt">(optional)</span></label>
+          <div id="brands" class="chips"></div>
+        </div>
+
+        <button id="go" class="primary">Recommend products</button>
+      </div>
+    </section>
+
+    <section class="results-col" aria-live="polite">
+      <div id="intro" class="empty">
+        <h2>How does this work without any history?</h2>
+        <ol>
+          <li><b>Constraints</b>: your budget and brand choices remove products that can't work.</li>
+          <li><b>Domain knowledge</b>: rules translate a need (e.g. "photography") into specs (e.g. 50MP+ camera).</li>
+          <li><b>Scoring</b>: each product is scored on how many weighted rules it satisfies, plus rating and popularity.</li>
+          <li><b>Explanation</b>: every result tells you why it was picked and what it lacks.</li>
+          <li><b>Relaxation</b>: if nothing fits, constraints are loosened step by step and you are told what changed.</li>
+        </ol>
+      </div>
+
+      <div id="output" hidden>
+        <div id="banner" class="banner" hidden></div>
+        <div id="trace" class="trace"></div>
+        <div id="list"></div>
+      </div>
+
+      <details id="kb" class="kb" hidden>
+        <summary>View the knowledge rules used for this category</summary>
+        <div id="kbBody"></div>
+      </details>
+    </section>
+  </main>
+
+  <footer class="wrap foot">Knowledge-based recommender demo · prices in INR · sample catalogue</footer>
+  <script src="app.js"></script>
+</body>
+</html>

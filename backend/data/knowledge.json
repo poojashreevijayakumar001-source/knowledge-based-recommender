@@ -1,0 +1,94 @@
+{
+  "currency": "INR",
+  "scoring_weights": {"rules": 0.70, "rating": 0.20, "popularity": 0.10},
+  "relaxation_steps": [
+    {"id": "drop_brand_exclusions", "label": "Ignored the brand exclusions"},
+    {"id": "budget_plus_25", "label": "Raised your budget by 25%"},
+    {"id": "budget_plus_50", "label": "Raised your budget by 50%"},
+    {"id": "soften_must_haves", "label": "Treated must-have rules as preferences"}
+  ],
+  "categories": {
+    "smartphone": {
+      "label": "Smartphones",
+      "use_cases": {
+        "photography": {"label": "Photography", "description": "Sharp photos and a good display to review them.", "rules": [
+          {"attr": "camera_mp", "op": ">=", "value": 50, "weight": 4, "reason": "50MP+ main camera suits photography"},
+          {"attr": "amoled", "op": "==", "value": true, "weight": 2, "reason": "AMOLED display shows photos with rich colour"},
+          {"attr": "storage_gb", "op": ">=", "value": 128, "weight": 2, "reason": "128GB+ storage for photo libraries"}]},
+        "gaming": {"label": "Gaming", "description": "Smooth frame rates and sustained performance.", "rules": [
+          {"attr": "ram_gb", "op": ">=", "value": 8, "weight": 3, "reason": "8GB+ RAM handles modern games"},
+          {"attr": "refresh_hz", "op": ">=", "value": 120, "weight": 3, "reason": "120Hz+ display gives smoother gameplay"},
+          {"attr": "battery_mah", "op": ">=", "value": 5000, "weight": 2, "reason": "5000mAh+ battery for long sessions"}]},
+        "battery_life": {"label": "Long battery life", "description": "Lasts more than a day and charges quickly.", "rules": [
+          {"attr": "battery_mah", "op": ">=", "value": 5000, "weight": 4, "reason": "5000mAh+ battery lasts through the day"},
+          {"attr": "fast_charge_w", "op": ">=", "value": 33, "weight": 3, "reason": "33W+ fast charging tops up quickly"}]},
+        "everyday": {"label": "Everyday use", "description": "Reliable 5G phone for calls, social media and UPI.", "rules": [
+          {"attr": "five_g", "op": "==", "value": true, "weight": 3, "reason": "Supports 5G"},
+          {"attr": "ram_gb", "op": ">=", "value": 6, "weight": 2, "reason": "6GB+ RAM keeps apps responsive"},
+          {"attr": "storage_gb", "op": ">=", "value": 128, "weight": 1, "reason": "128GB+ storage"}]}
+      }
+    },
+    "laptop": {
+      "label": "Laptops",
+      "use_cases": {
+        "student": {"label": "Student", "description": "Light, long-lasting and affordable.", "rules": [
+          {"attr": "weight_kg", "op": "<=", "value": 1.8, "weight": 2, "reason": "Under 1.8kg is easy to carry to class"},
+          {"attr": "battery_hours", "op": ">=", "value": 8, "weight": 3, "reason": "8h+ battery lasts a full college day"},
+          {"attr": "price", "op": "<=", "value": 60000, "weight": 3, "reason": "Student-friendly price"}]},
+        "gaming": {"label": "Gaming", "description": "Dedicated graphics and a fast display.", "rules": [
+          {"attr": "gpu", "op": "==", "value": true, "weight": 5, "hard": true, "reason": "Dedicated GPU is essential for gaming"},
+          {"attr": "ram_gb", "op": ">=", "value": 16, "weight": 3, "reason": "16GB+ RAM for modern titles"},
+          {"attr": "refresh_hz", "op": ">=", "value": 120, "weight": 2, "reason": "120Hz+ screen for smooth gameplay"}]},
+        "programming": {"label": "Programming", "description": "Memory and storage for IDEs, containers and builds.", "rules": [
+          {"attr": "ram_gb", "op": ">=", "value": 16, "weight": 4, "reason": "16GB+ RAM for IDEs, containers and builds"},
+          {"attr": "storage_gb", "op": ">=", "value": 512, "weight": 2, "reason": "512GB+ SSD for projects and tools"},
+          {"attr": "battery_hours", "op": ">=", "value": 8, "weight": 1, "reason": "8h+ battery for working away from a desk"}]},
+        "travel": {"label": "Travel & portability", "description": "Ultra-light with all-day battery.", "rules": [
+          {"attr": "weight_kg", "op": "<=", "value": 1.4, "weight": 4, "reason": "Under 1.4kg is ultra-portable"},
+          {"attr": "battery_hours", "op": ">=", "value": 10, "weight": 3, "reason": "10h+ battery for long journeys"}]},
+        "creative": {"label": "Design & video", "description": "Colour-accurate screen with GPU power.", "rules": [
+          {"attr": "color_accurate", "op": "==", "value": true, "weight": 4, "reason": "Colour-accurate display for design work"},
+          {"attr": "ram_gb", "op": ">=", "value": 16, "weight": 3, "reason": "16GB+ RAM for editing"},
+          {"attr": "gpu", "op": "==", "value": true, "weight": 2, "reason": "Dedicated GPU speeds up rendering"}]}
+      }
+    },
+    "headphones": {
+      "label": "Headphones",
+      "use_cases": {
+        "commuting": {"label": "Commuting", "description": "Blocks noise on trains and buses.", "rules": [
+          {"attr": "anc", "op": "==", "value": true, "weight": 4, "reason": "Active noise cancellation cuts commute noise"},
+          {"attr": "wireless", "op": "==", "value": true, "weight": 2, "reason": "Wireless, no tangled cables"},
+          {"attr": "battery_hours", "op": ">=", "value": 20, "weight": 2, "reason": "20h+ battery covers several days of travel"}]},
+        "workout": {"label": "Workout", "description": "Secure fit that survives sweat.", "rules": [
+          {"attr": "water_resistant", "op": "==", "value": true, "weight": 4, "reason": "Water-resistant against sweat"},
+          {"attr": "type", "op": "in", "value": ["in-ear", "true-wireless"], "weight": 3, "reason": "In-ear design stays put during exercise"},
+          {"attr": "wireless", "op": "==", "value": true, "weight": 2, "reason": "Wireless for freedom of movement"}]},
+        "gaming": {"label": "Gaming", "description": "Low latency and a clear microphone.", "rules": [
+          {"attr": "low_latency", "op": "==", "value": true, "weight": 4, "reason": "Low-latency mode keeps audio in sync"},
+          {"attr": "mic", "op": "==", "value": true, "weight": 3, "reason": "Built-in mic for team chat"}]},
+        "music": {"label": "Music lover", "description": "Best sound quality and comfort.", "rules": [
+          {"attr": "hi_res", "op": "==", "value": true, "weight": 4, "reason": "Hi-res audio support"},
+          {"attr": "type", "op": "==", "value": "over-ear", "weight": 3, "reason": "Over-ear drivers give richer sound"}]},
+        "calls": {"label": "Work calls", "description": "Clear voice and noise reduction.", "rules": [
+          {"attr": "mic", "op": "==", "value": true, "weight": 4, "hard": true, "reason": "Has a microphone for calls"},
+          {"attr": "anc", "op": "==", "value": true, "weight": 2, "reason": "ANC helps you focus in noisy places"},
+          {"attr": "wireless", "op": "==", "value": true, "weight": 1, "reason": "Wireless for moving around"}]}
+      }
+    },
+    "smartwatch": {
+      "label": "Smartwatches",
+      "use_cases": {
+        "fitness": {"label": "Fitness tracking", "description": "Accurate workout and health tracking.", "rules": [
+          {"attr": "gps", "op": "==", "value": true, "weight": 4, "reason": "Built-in GPS tracks runs without a phone"},
+          {"attr": "spo2", "op": "==", "value": true, "weight": 2, "reason": "SpO2 sensor for health monitoring"}]},
+        "battery": {"label": "Long battery", "description": "Charge it once a week or less.", "rules": [
+          {"attr": "battery_days", "op": ">=", "value": 7, "weight": 5, "reason": "7+ days of battery life"}]},
+        "style": {"label": "Looks & notifications", "description": "Bright display and phone calls from your wrist.", "rules": [
+          {"attr": "amoled", "op": "==", "value": true, "weight": 3, "reason": "Bright AMOLED display"},
+          {"attr": "calls", "op": "==", "value": true, "weight": 3, "reason": "Take calls from the watch"}]},
+        "swimming": {"label": "Swimming", "description": "Rated for pool and open water.", "rules": [
+          {"attr": "water_atm", "op": ">=", "value": 5, "weight": 5, "hard": true, "reason": "5ATM+ water resistance for swimming"}]}
+      }
+    }
+  }
+}
